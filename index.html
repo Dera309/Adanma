@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adanma - Development</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            max-width: 800px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        h1 {
+            color: #1f2937;
+            font-size: 36px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .tagline {
+            color: #6b7280;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+        
+        .status {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        
+        .info {
+            background: #f3f4f6;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .info h2 {
+            color: #1f2937;
+            font-size: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .info-label {
+            color: #6b7280;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .info-value {
+            color: #1f2937;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .info-value a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .info-value a:hover {
+            text-decoration: underline;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 14px 32px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .btn-secondary:hover {
+            background: #f3f4f6;
+            transform: translateY(-2px);
+        }
+        
+        .features {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .features h3 {
+            color: #1f2937;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            text-align: center;
+        }
+        
+        .feature {
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+        
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .feature-text {
+            color: #4b5563;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 20px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🌍</div>
+        <h1>Adanma</h1>
+        <p class="tagline">Connecting Africa, One Transaction at a Time</p>
+        
+        <div class="status">✓ Development Environment</div>
+        
+        <div class="info">
+            <h2>🚀 Quick Access</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">Frontend</span>
+                    <span class="info-value"><a href="http://localhost:3000" target="_blank">localhost:3000</a></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Backend API</span>
+                    <span class="info-value"><a href="http://localhost:5000" target="_blank">localhost:5000</a></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Health Check</span>
+                    <span class="info-value"><a href="http://localhost:5000/health" target="_blank">/health</a></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Status</span>
+                    <span class="info-value" id="status">Checking...</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="buttons">
+            <a href="http://localhost:3000" class="btn btn-primary" target="_blank">Open Application</a>
+            <a href="./QUICK-START.md" class="btn btn-secondary">View Setup Guide</a>
+        </div>
+        
+        <div class="features">
+            <h3>Supported Countries</h3>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">🇳🇬</div>
+                    <div class="feature-text">Nigeria</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🇬🇭</div>
+                    <div class="feature-text">Ghana</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🇰🇪</div>
+                    <div class="feature-text">Kenya</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🇿🇦</div>
+                    <div class="feature-text">South Africa</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🇨🇲</div>
+                    <div class="feature-text">Cameroon</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🇪🇬</div>
+                    <div class="feature-text">Egypt</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Check if backend is running
+        async function checkStatus() {
+            const statusEl = document.getElementById('status');
+            try {
+                const response = await fetch('http://localhost:5000/health');
+                if (response.ok) {
+                    statusEl.textContent = '✓ Running';
+                    statusEl.style.color = '#10b981';
+                } else {
+                    statusEl.textContent = '⚠ Offline';
+                    statusEl.style.color = '#f59e0b';
+                }
+            } catch (error) {
+                statusEl.textContent = '✗ Offline';
+                statusEl.style.color = '#ef4444';
+            }
+        }
+        
+        // Check status on load and every 5 seconds
+        checkStatus();
+        setInterval(checkStatus, 5000);
+    </script>
+</body>
+</html>

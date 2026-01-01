@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Debug Test</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            max-width: 800px; 
+            margin: 0 auto;
+        }
+        .test-section { 
+            margin: 20px 0; 
+            padding: 15px; 
+            border: 1px solid #ddd; 
+            border-radius: 5px; 
+        }
+        .result { 
+            margin: 10px 0; 
+            padding: 10px; 
+            border-radius: 5px; 
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+        .info { background-color: #d1ecf1; color: #0c5460; }
+        button { 
+            padding: 10px 20px; 
+            margin: 5px; 
+            cursor: pointer; 
+            border: none;
+            border-radius: 3px;
+            background: #007bff;
+            color: white;
+        }
+        button:hover { background: #0056b3; }
+        input { 
+            padding: 8px; 
+            margin: 5px; 
+            border: 1px solid #ddd; 
+            border-radius: 3px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 Login Debug Test</h1>
+    <p>This page tests the login functionality to debug the 500 error.</p>
+    
+    <div class="test-section">
+        <h3>1. Backend Health Check</h3>
+        <button onclick="testHealth()">Test Health Endpoint</button>
+        <div id="health-result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>2. Login Test</h3>
+        <div>
+            <input type="text" id="identifier" placeholder="Email or Phone" value="test@example.com">
+            <input type="password" id="password" placeholder="Password" value="testpassword123">
+            <button onclick="testLogin()">Test Login</button>
+        </div>
+        <div id="login-result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>3. CORS & Headers Test</h3>
+        <button onclick="testCORS()">Test CORS Headers</button>
+        <div id="cors-result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>4. Browser Information</h3>
+        <button onclick="showBrowserInfo()">Show Browser Info</button>
+        <div id="browser-result"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:5000';
+        
+        function addResult(containerId, message, type = 'info') {
+            const container = document.getElementById(containerId);
+            const div = document.createElement('div');
+            div.className = `result ${type}`;
+            div.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            container.appendChild(div);
+        }
+        
+        function clearResults(containerId) {
+            document.getElementById(containerId).innerHTML = '';
+        }
+        
+        async function testHealth() {
+            clearResults('health-result');
+            addResult('health-result', 'Testing backend health...', 'info');
+            
+            try {
+                const response = await fetch(`${API_BASE}/health`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    addResult('health-result', `✅ Health check successful: ${JSON.stringify(data, null, 2)}`, 'success');
+                } else {
+                    addResult('health-result', `❌ Health check failed: ${JSON.stringify(data, null, 2)}`, 'error');
+                }
+            } catch (error) {
+                addResult('health-result', `❌ Health check error: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testLogin() {
+            clearResults('login-result');
+            const identifier = document.getElementById('identifier').value;
+            const password = document.getElementById('password').value;
+            
+            addResult('login-result', `Testing login with: ${identifier}`, 'info');
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        identifier,
+                        password
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    addResult('login-result', `✅ Login successful: ${JSON.stringify(data, null, 2)}`, 'success');
+                } else {
+                    addResult('login-result', `❌ Login failed (${response.status}): ${JSON.stringify(data, null, 2)}`, 'error');
+                }
+            } catch (error) {
+                addResult('login-result', `❌ Login error: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testCORS() {
+            clearResults('cors-result');
+            addResult('cors-result', 'Testing CORS and headers...', 'info');
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/auth/login`, {
+                    method: 'OPTIONS',
+                    headers: {
+                        'Origin': window.location.origin,
+                        'Access-Control-Request-Method': 'POST',
+                        'Access-Control-Request-Headers': 'Content-Type'
+                    }
+                });
+                
+                addResult('cors-result', `✅ CORS preflight successful (${response.status})`, 'success');
+                
+                // Show response headers
+                const headers = {};
+                for (let [key, value] of response.headers.entries()) {
+                    headers[key] = value;
+                }
+                addResult('cors-result', `Response headers: ${JSON.stringify(headers, null, 2)}`, 'info');
+                
+            } catch (error) {
+                addResult('cors-result', `❌ CORS test error: ${error.message}`, 'error');
+            }
+        }
+        
+        function showBrowserInfo() {
+            clearResults('browser-result');
+            
+            const info = {
+                userAgent: navigator.userAgent,
+                origin: window.location.origin,
+                protocol: window.location.protocol,
+                host: window.location.host,
+                cookiesEnabled: navigator.cookieEnabled,
+                language: navigator.language,
+                platform: navigator.platform
+            };
+            
+            addResult('browser-result', `Browser Information: ${JSON.stringify(info, null, 2)}`, 'info');
+        }
+        
+        // Auto-run health check on page load
+        window.addEventListener('load', () => {
+            testHealth();
+            showBrowserInfo();
+        });
+    </script>
+</body>
+</html>

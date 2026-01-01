@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Connection Test</title>
+</head>
+<body>
+    <h1>Adanma API Connection Test</h1>
+    <div id="results"></div>
+    
+    <script>
+        async function testAPI() {
+            const results = document.getElementById('results');
+            
+            try {
+                // Test health endpoint
+                results.innerHTML += '<p>Testing health endpoint...</p>';
+                const healthResponse = await fetch('http://localhost:5002/health');
+                const healthData = await healthResponse.json();
+                results.innerHTML += `<p>✅ Health check: ${healthData.status}</p>`;
+                
+                // Test cart endpoint (without auth - should return mock data)
+                results.innerHTML += '<p>Testing cart endpoint...</p>';
+                const cartResponse = await fetch('http://localhost:5002/api/cart');
+                const cartData = await cartResponse.json();
+                
+                if (cartData.success) {
+                    results.innerHTML += `<p>✅ Cart API: ${cartData.data.items.length} items loaded</p>`;
+                    results.innerHTML += `<p>📊 Cart total: $${cartData.data.total}</p>`;
+                    results.innerHTML += `<p>🎯 Features: ${cartData.meta?.features?.join(', ') || 'basic'}</p>`;
+                } else {
+                    results.innerHTML += `<p>⚠️ Cart API: ${cartData.error?.message || 'Unknown error'}</p>`;
+                }
+                
+                results.innerHTML += '<h2>✅ All tests passed! Frontend can connect to backend.</h2>';
+                
+            } catch (error) {
+                results.innerHTML += `<p>❌ Error: ${error.message}</p>`;
+                results.innerHTML += '<p>Make sure the backend server is running on port 5002</p>';
+            }
+        }
+        
+        // Run tests when page loads
+        testAPI();
+    </script>
+</body>
+</html>

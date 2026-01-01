@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend-Backend Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Frontend-Backend Communication Test</h1>
+    
+    <button onclick="testHealth()">Test Health Endpoint</button>
+    <button onclick="testLogin()">Test Login Endpoint</button>
+    <button onclick="clearResults()">Clear Results</button>
+    
+    <div id="results"></div>
+
+    <script>
+        const API_BASE = 'http://localhost:5000';
+        
+        function addResult(message, isSuccess = true) {
+            const results = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = `test-result ${isSuccess ? 'success' : 'error'}`;
+            div.innerHTML = `<strong>${new Date().toLocaleTimeString()}</strong>: ${message}`;
+            results.appendChild(div);
+        }
+        
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+        }
+        
+        async function testHealth() {
+            try {
+                addResult('Testing health endpoint...');
+                const response = await fetch(`${API_BASE}/health`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    addResult(`✅ Health check successful: ${data.message}`, true);
+                } else {
+                    addResult(`❌ Health check failed: ${data.error?.message || 'Unknown error'}`, false);
+                }
+            } catch (error) {
+                addResult(`❌ Health check error: ${error.message}`, false);
+            }
+        }
+        
+        async function testLogin() {
+            try {
+                addResult('Testing login endpoint...');
+                const response = await fetch(`${API_BASE}/api/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        identifier: 'test@example.com',
+                        password: 'testpassword123'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    addResult(`✅ Login successful: ${data.message} (Mock Mode: ${data.data?.mockMode})`, true);
+                } else {
+                    addResult(`❌ Login failed (${response.status}): ${data.error?.message || 'Unknown error'}`, false);
+                }
+            } catch (error) {
+                addResult(`❌ Login error: ${error.message}`, false);
+            }
+        }
+        
+        // Test on page load
+        window.addEventListener('load', () => {
+            addResult('Page loaded. Ready to test backend communication.');
+            testHealth();
+        });
+    </script>
+</body>
+</html>

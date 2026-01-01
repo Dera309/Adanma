@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Adanma</title>
+    <meta name="title" content="Adanma" />
+    <meta name="description" content="Connect buyers and sellers across Nigeria, Ghana, Kenya, South Africa, Cameroon, and Egypt. Secure authentication, verified vendors, and seamless transactions." />
+    <meta name="keywords" content="Adanma, African e-commerce, online marketplace, buy sell Africa, Nigeria marketplace, Ghana shopping, Kenya online store, South Africa e-commerce" />
+    <meta name="author" content="Adanma Platform" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://adanma.com/" />
+    <meta property="og:title" content="Adanma" />
+    <meta property="og:description" content="African E-commerce Platform" />
+    <meta property="og:image" content="/og-image.png" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://adanma.com/" />
+    <meta property="twitter:title" content="Adanma" />
+    <meta property="twitter:description" content="African E-commerce Platform" />
+    <meta property="twitter:image" content="/twitter-image.png" />
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#10B981" />
+    <meta name="msapplication-TileColor" content="#10B981" />
+    
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Google Fonts - Inter for modern, clean look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <!-- Inline critical CSS for faster initial render -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background: #0D0D0D;
+        min-height: 100vh;
+        color: #FFFFFF;
+      }
+      
+      #root {
+        min-height: 100vh;
+      }
+      
+      /* Loading spinner */
+      .app-loading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: #0D0D0D;
+      }
+      
+      .app-loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 4px solid #1E1E1E;
+        border-top-color: #FFD700;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      .app-loading-text {
+        margin-top: 20px;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+      }
+      
+      .app-loading-subtext {
+        margin-top: 8px;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 14px;
+      }
+      
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      
+      /* Hide loading screen when app is ready */
+      .app-ready .app-loading {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div class="app-loading">
+      <div class="app-loading-spinner"></div>
+      <div class="app-loading-text">Adanma</div>
+      <div class="app-loading-subtext">African E-commerce Platform</div>
+    </div>
+    
+    <!-- React Root -->
+    <div id="root"></div>
+    
+    <!-- Main Application Script -->
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Remove loading screen when app loads -->
+    <script>
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          document.body.classList.add('app-ready');
+        }, 100);
+      });
+    </script>
+    
+    <!-- No JavaScript fallback -->
+    <noscript>
+      <div style="display: flex; align-items: center; justify-content: center; min-height: 100vh; background: #f3f4f6; padding: 20px; text-align: center;">
+        <div>
+          <h1 style="color: #1f2937; margin-bottom: 16px;">JavaScript Required</h1>
+          <p style="color: #6b7280; font-size: 16px;">
+            Please enable JavaScript in your browser to use Adanma.
+          </p>
+        </div>
+      </div>
+    </noscript>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+.dynamic-address-form {
+  width: 100%;
+}
+
+.checkbox-field {
+  margin: 1.5rem 0;
+}
+
+.checkbox-field label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.checkbox-field input[type="checkbox"] {
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+  accent-color: #2ECC71;
+}
+
+.checkbox-field span {
+  font-size: 0.9375rem;
+  color: #FFFFFF;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #2A2A2A;
+}
+
+@media (max-width: 640px) {
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,77 @@
+.verification-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.verification-badge-small {
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+  gap: 0.25rem;
+}
+
+.verification-badge-medium {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  gap: 0.5rem;
+}
+
+.verification-badge-large {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  gap: 0.75rem;
+}
+
+.verification-icon {
+  font-weight: bold;
+}
+
+.verification-text {
+  white-space: nowrap;
+}
+
+/* Status-specific styles */
+.verification-badge-verified {
+  background: #d1fae5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.verification-badge-pending {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+.verification-badge-rejected {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.verification-badge-unverified {
+  background: #f3f4f6;
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+}
+
+/* Icon colors */
+.verification-badge-verified .verification-icon {
+  color: #10b981;
+}
+
+.verification-badge-pending .verification-icon {
+  color: #f59e0b;
+}
+
+.verification-badge-rejected .verification-icon {
+  color: #ef4444;
+}
+
+.verification-badge-unverified .verification-icon {
+  color: #9ca3af;
+}

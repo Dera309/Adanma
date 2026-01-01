@@ -1,0 +1,116 @@
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║                    ADANMA - HOW TO RUN                           ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+
+📋 STEP-BY-STEP GUIDE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 1: CHECK YOUR SYSTEM
+   └─ Double-click: check-status.bat
+   └─ This will verify Node.js, npm, and dependencies
+
+STEP 2: INSTALL DEPENDENCIES (First time only)
+   └─ Double-click: setup.bat
+   └─ Wait for installation to complete
+   └─ This may take 5-10 minutes
+
+STEP 3: CONFIGURE DATABASE (IMPORTANT!)
+   └─ Open: backend/.env in Notepad
+   └─ Find: DATABASE_URL="mongodb+srv://..."
+   └─ Replace: your_password_here with your actual MongoDB password
+   └─ Save the file
+
+STEP 4: START BACKEND SERVER
+   └─ Double-click: start-backend.bat
+   └─ Keep this window open
+   └─ Wait for: "Server running on port 5000"
+
+STEP 5: START FRONTEND SERVER
+   └─ Double-click: start-frontend.bat
+   └─ Keep this window open
+   └─ Wait for: "Local: http://localhost:3000"
+
+STEP 6: OPEN IN BROWSER
+   └─ Go to: http://localhost:3000
+   └─ You should see the registration/login page
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🌐 ACCESS POINTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+   Frontend:      http://localhost:3000
+   Backend API:   http://localhost:5000
+   Health Check:  http://localhost:5000/health
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔧 TROUBLESHOOTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PROBLEM: npm install fails
+   SOLUTION: Check internet connection, then run setup.bat again
+
+PROBLEM: Port already in use
+   SOLUTION: Close other applications using ports 3000 or 5000
+
+PROBLEM: Database connection error
+   SOLUTION: 
+   1. Check MongoDB password in backend/.env
+   2. Verify MongoDB Atlas cluster is running
+   3. Whitelist your IP in MongoDB Atlas
+
+PROBLEM: "Cannot load scripts" error
+   SOLUTION: 
+   1. Open PowerShell as Administrator
+   2. Run: Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+   3. Type 'Y' and press Enter
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📚 DETAILED GUIDES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+   QUICK-START.md    - Quick start guide with troubleshooting
+   START-APP.md      - Comprehensive startup documentation
+   DEPLOYMENT.md     - Production deployment guide
+   README.md         - Project overview and documentation
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ SUCCESS INDICATORS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Backend Terminal Shows:
+   ✓ "Server running on port 5000"
+   ✓ "Connected to MongoDB"
+
+Frontend Terminal Shows:
+   ✓ "Local: http://localhost:3000"
+   ✓ "ready in XXX ms"
+
+Browser Shows:
+   ✓ Registration/Login page loads
+   ✓ No console errors
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 NEXT STEPS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Register a new user account
+2. Verify email (check backend terminal for verification link)
+3. Log in with your credentials
+4. Explore the features:
+   - Profile management
+   - Address management
+   - Role selection (Buyer/Vendor)
+   - Vendor verification (if vendor role)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Need help? Check QUICK-START.md for detailed troubleshooting!
+
+╚══════════════════════════════════════════════════════════════════╝

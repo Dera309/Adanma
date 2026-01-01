@@ -1,0 +1,137 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  extensions = [postgis(map: "public")]
+}
+
+// Enums
+enum UserRole {
+  BUYER
+  VENDOR
+}
+
+enum AuthProvider {
+  EMAIL
+  PHONE
+  WHATSAPP
+  FACEBOOK
+}
+
+enum VerificationStatus {
+  UNVERIFIED
+  PENDING
+  VERIFIED
+}
+
+enum SupportedCountry {
+  NIGERIA
+  GHANA
+  KENYA
+  SOUTH_AFRICA
+  CAMEROON
+  EGYPT
+}
+
+enum VerificationRequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+// User Model
+model User {
+  id                   String             @id @default(cuid())
+  email                String?            @unique
+  phoneNumber          String?            @unique
+  passwordHash         String?
+  roles                UserRole[]
+  authProvider         AuthProvider
+  emailVerified        Boolean            @default(false)
+  phoneVerified        Boolean            @default(false)
+  verificationStatus   VerificationStatus @default(UNVERIFIED)
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+  lastLoginAt          DateTime?
+  isActive             Boolean            @default(true)
+
+  // Relations
+  addresses            Address[]
+  sessions             Session[]
+  verificationRequests VerificationRequest[]
+  passwordHistory      PasswordHistory[]
+
+  @@map("users")
+}
+
+// Address Model
+model Address {
+  id            String           @id @default(cuid())
+  userId        String
+  country       SupportedCountry
+  region        String           // State/Province/County/Governorate
+  subRegion     String?          // LGA/District/Sub-County/Municipality/Division
+  city          String
+  district      String?          // For Egypt
+  streetAddress String
+  postalCode    String?
+  isPrimary     Boolean          @default(false)
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+
+  // Relations
+  user          User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("addresses")
+}
+
+// Session Model
+model Session {
+  id             String   @id @default(cuid())
+  userId         String
+  token          String   @unique
+  deviceInfo     String
+  ipAddress      String
+  expiresAt      DateTime
+  createdAt      DateTime @default(now())
+  lastActivityAt DateTime @default(now())
+
+  // Relations
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+// VerificationRequest Model
+model VerificationRequest {
+  id              String                    @id @default(cuid())
+  userId          String
+  documentType    String
+  documentUrls    String[]
+  status          VerificationRequestStatus @default(PENDING)
+  rejectionReason String?
+  submittedAt     DateTime                  @default(now())
+  reviewedAt      DateTime?
+  reviewedBy      String?
+
+  // Relations
+  user            User                      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("verification_requests")
+}
+
+// PasswordHistory Model (for password reuse prevention)
+model PasswordHistory {
+  id           String   @id @default(cuid())
+  userId       String
+  passwordHash String
+  createdAt    DateTime @default(now())
+
+  // Relations
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("password_history")
+}

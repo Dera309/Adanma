@@ -1,0 +1,49 @@
+.address-management-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+  background: #0D0D0D;
+  min-height: 100vh;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  color: #B0B0B0;
+  font-size: 1rem;
+}
+
+.loading-state {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.loading-state p {
+  color: #B0B0B0;
+  font-size: 1.125rem;
+}
+
+@media (max-width: 768px) {
+  .address-management-page {
+    padding: 1rem 0;
+  }
+
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+}/* Skel
+eton loading styles */
+.addresses-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}

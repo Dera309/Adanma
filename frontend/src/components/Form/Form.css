@@ -1,0 +1,295 @@
+/* Form Group */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+/* Form Label */
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  font-size: 0.95rem;
+}
+
+.form-label .required {
+  color: #dc3545;
+  margin-left: 0.25rem;
+}
+
+/* Form Input */
+.form-input,
+.form-select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #2A2A2A;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: #121212;
+  color: #FFFFFF;
+}
+
+.form-input:focus,
+.form-select:focus {
+  outline: 2px solid #00BFFF;
+  outline-offset: 2px;
+  border-color: #00BFFF;
+}
+
+.form-input-error {
+  border-color: #dc3545;
+}
+
+.form-input-error:focus {
+  outline: 2px solid var(--color-danger);
+  outline-offset: 2px;
+  border-color: var(--color-danger);
+}
+
+/* Form Select */
+.form-select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.5rem;
+}
+
+/* Helper and Error Text */
+.form-helper-text,
+.form-error-text {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.form-helper-text {
+  color: #B0B0B0;
+}
+
+.form-error-text {
+  color: #dc3545;
+}
+
+/* Button Styles */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Button Variants */
+.btn-primary {
+  background: #2ECC71;
+  color: #0D0D0D;
+  font-weight: 600;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #27AE60;
+}
+
+.btn-secondary {
+  background: #FFD700;
+  color: #0D0D0D;
+  font-weight: 600;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #E6C200;
+}
+
+.btn-danger {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: #c82333;
+}
+
+.btn-outline {
+  background: transparent;
+  color: #00BFFF;
+  border: 2px solid #00BFFF;
+}
+
+.btn-outline:hover:not(:disabled) {
+  background: #00BFFF;
+  color: #0D0D0D;
+}
+
+/* Button Sizes */
+.btn-small {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.btn-medium {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}
+
+.btn-large {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+.btn-full-width {
+  width: 100%;
+}
+
+/* Button Loading State */
+.btn-loading {
+  position: relative;
+}
+
+.btn-spinner {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Form Messages */
+.form-message {
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.form-message-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.form-message-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.form-message-text {
+  flex: 1;
+}
+
+.form-message-text p {
+  margin: 0;
+}
+
+.form-message-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 1rem;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.form-message-close:hover {
+  opacity: 1;
+}
+
+/* Error Message */
+.form-message-error {
+  background: #fee;
+  border: 1px solid #fcc;
+  color: #c00;
+}
+
+.form-error-list {
+  margin: 0.5rem 0 0 0;
+  padding-left: 1.25rem;
+}
+
+.form-error-list li {
+  margin-bottom: 0.25rem;
+}
+
+/* Success Message */
+.form-message-success {
+  background: #efe;
+  border: 1px solid #cfc;
+  color: #060;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-input,
+  .form-select {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+/* Screen reader only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .form-input,
+  .form-select {
+    border-width: 2px;
+  }
+  
+  .btn {
+    border: 2px solid;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .form-input,
+  .form-select {
+    transition: none;
+  }
+  
+  .btn-spinner {
+    animation: none;
+  }
+}
