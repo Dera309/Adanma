@@ -1,21 +1,10 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback, useMemo } from 'react';
 import api, { ApiResponse } from '../lib/api';
-
-interface User {
-  id: string;
-  email?: string;
-  phoneNumber?: string;
-  roles: string; // Changed from string[] to string to match backend schema
-  emailVerified: boolean;
-  phoneVerified: boolean;
-  verificationStatus: string;
-  authProvider: string;
-  createdAt?: string;
-  lastLoginAt?: string;
-}
+import { User, LoginResponse } from '../types';
 
 interface AuthContextType {
   user: User | null;
+  accessToken: string | null;
   isAuthenticated: boolean;
   isLoading: boolean;
   error: string | null;
@@ -42,6 +31,7 @@ interface AuthProviderProps {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [accessToken, setAccessToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -132,16 +122,20 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     
     try {
       console.log('🔐 Attempting login for:', identifier);
+      console.log('🔗 API URL:', import.meta.env.VITE_API_URL || 'http://localhost:5002');
       
-      const response = await api.post<ApiResponse<{ user: User }>>('/auth/login', {
+      const response = await api.post<ApiResponse<LoginResponse>>('/auth/login', {
         identifier,
         password
       });
 
-      console.log('✅ Login response received:', JSON.stringify(response, null, 2));
-      console.log('Response status:', response.status);
-      console.log('Response data:', JSON.stringify(response.data, null, 2));
-      console.log('Response data success:', response.data?.success);
+      console.log('✅ Login response received:');
+      console.log('- Status:', response.status);
+      console.log('- Data:', response.data);
+      console.log('- Success:', response.data?.success);
+      console.log('- Has data:', !!response.data?.data);
+      console.log('- Has user:', !!response.data?.data?.user);
+      console.log('- Has accessToken:', !!response.data?.data?.accessToken);
 
       // Check if this is a successful response
       if (response.status === 200 && response.data && response.data.success && response.data.data) {
@@ -157,18 +151,33 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         
         // Store access token if provided
         if (response.data.data.accessToken) {
-          localStorage.setItem('token', response.data.data.accessToken);
+          const token = response.data.data.accessToken;
+          localStorage.setItem('token', token);
+          setAccessToken(token);
+          console.log('✅ Token stored in localStorage');
         }
         
+        console.log('✅ Login successful - cookies set by server');
+        
         setError(null);
+        console.log('✅ Login completed successfully');
       } else {
-        console.log('Login failed - response not successful');
-        console.log('Status:', response.status);
-        console.log('Data:', JSON.stringify(response.data, null, 2));
-        throw new Error(response.data?.error?.message || 'Login failed');
+        console.log('❌ Login failed - response validation failed');
+        console.log('- Status check:', response.status === 200);
+        console.log('- Data check:', !!response.data);
+        console.log('- Success check:', response.data?.success);
+        console.log('- Data.data check:', !!response.data?.data);
+        const errorMsg = response.data?.error?.message || response.data?.message || 'Login failed - invalid response format';
+        console.log('- Error message:', errorMsg);
+        throw new Error(errorMsg);
       }
     } catch (error: any) {
-      console.error('❌ Login error:', error);
+      console.error('❌ Login error caught:', error);
+      console.error('- Error type:', typeof error);
+      console.error('- Error message:', error?.message);
+      console.error('- Error status:', error?.status);
+      console.error('- Error response:', error?.response);
+      console.error('- Error data:', error?.data);
       
       // Handle different error formats
       let errorMessage = 'Login failed. Please try again.';
@@ -176,12 +185,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       if (error?.status === 401 || error?.response?.status === 401) {
         const errorData = error?.data || error?.response?.data || error;
         errorMessage = errorData?.error?.message || errorData?.message || 'Invalid credentials';
+      } else if (error?.message) {
+        errorMessage = error.message;
       } else {
-        errorMessage = error?.error?.message || error?.response?.data?.error?.message || error?.response?.data?.message || error?.message || 'Login failed. Please try again.';
+        errorMessage = error?.error?.message || error?.response?.data?.error?.message || error?.response?.data?.message || 'Login failed. Please try again.';
       }
       
+      console.error('❌ Final error message:', errorMessage);
       setError(errorMessage);
-      throw error;
+      throw new Error(errorMessage);
     } finally {
       setIsLoading(false);
     }
@@ -196,6 +208,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       console.error('Logout error:', error);
     } finally {
       setUser(null);
+      setAccessToken(null);
       localStorage.removeItem('lastAuthRefresh');
       localStorage.removeItem('token');
     }
@@ -237,6 +250,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const value: AuthContextType = useMemo(() => ({
     user,
+    accessToken,
     isAuthenticated: !!user,
     isLoading,
     error,
@@ -245,7 +259,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     refreshUser,
     updateUser,
     clearError
-  }), [user, isLoading, error, login, logout, refreshUser, updateUser, clearError]);
+  }), [user, accessToken, isLoading, error, login, logout, refreshUser, updateUser, clearError]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

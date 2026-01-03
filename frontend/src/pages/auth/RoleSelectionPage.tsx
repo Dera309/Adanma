@@ -78,7 +78,7 @@ const RoleSelectionPage = () => {
     try {
       const response = await axios.patch(
         `${import.meta.env.VITE_API_URL}/api/users/role`,
-        { roles: selectedRoles.join(',') }, // Convert array to comma-separated string
+        { roles: (selectedRoles as Role[]).join(',') }, // Convert array to comma-separated string
         { withCredentials: true }
       );
 

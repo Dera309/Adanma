@@ -13,9 +13,10 @@ const ServerStatus: React.FC = () => {
   };
 
   useEffect(() => {
-    checkServer();
-    const interval = setInterval(checkServer, 10000); // Check every 10 seconds
-    return () => clearInterval(interval);
+    // Temporarily disable health checks to avoid connection errors
+    // checkServer();
+    // const interval = setInterval(checkServer, 10000); // Check every 10 seconds
+    // return () => clearInterval(interval);
   }, []);
 
   if (isServerOnline === true) return null; // Don't show when server is online

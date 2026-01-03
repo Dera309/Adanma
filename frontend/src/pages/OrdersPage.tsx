@@ -1,17 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-
-interface Order {
-  id: string;
-  status: string;
-  total: number;
-  createdAt: string;
-  items: Array<{
-    name: string;
-    quantity: number;
-    price: number;
-  }>;
-}
+import { Order } from '../types';
 
 const OrdersPage = () => {
   const { user } = useAuth();

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import SkeletonLoader from '../components/Loading/SkeletonLoader';
+import { User } from '../types';
 import axios from 'axios';
 import './ProfilePage.css';
 

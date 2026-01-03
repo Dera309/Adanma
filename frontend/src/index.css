@@ -1,3 +1,40 @@
+/* 
+=== ADANMA E-COMMERCE COLOR PALETTE ===
+Primary Background: Black (#0D0D0D, #121212)
+Accent Colors: Gold (#FFD700), Emerald Green (#2ECC71), Electric Blue (#00BFFF)
+Text Colors: White (#FFFFFF), Light Grey (#B0B0B0), Deep Grey (#1E1E1E)
+CTA Buttons: Gold/Emerald backgrounds with Black/White text
+*/
+
+:root {
+  /* Primary Colors */
+  --color-primary-bg: #0D0D0D;
+  --color-secondary-bg: #121212;
+  --color-card-bg: #1E1E1E;
+  
+  /* Accent Colors */
+  --color-gold: #FFD700;
+  --color-amber: #FFC107;
+  --color-emerald: #2ECC71;
+  --color-electric-blue: #00BFFF;
+  
+  /* Text Colors */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #B0B0B0;
+  --color-text-muted: #808080;
+  
+  /* Interactive Elements */
+  --color-border: #2A2A2A;
+  --color-hover: #2A2A2A;
+  --color-focus: var(--color-electric-blue);
+  
+  /* Status Colors */
+  --color-success: var(--color-emerald);
+  --color-warning: var(--color-amber);
+  --color-error: #FF4444;
+  --color-info: var(--color-electric-blue);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -10,16 +47,175 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #0D0D0D;
-  color: #FFFFFF;
+  background: var(--color-primary-bg);
+  color: var(--color-text-primary);
+  line-height: 1.6;
 }
 
 .app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: var(--color-primary-bg);
+}
+
+/* Global Button Styles */
+.btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
-  background: #0D0D0D;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background: var(--color-gold);
+  color: var(--color-primary-bg);
+}
+
+.btn-primary:hover {
+  background: var(--color-amber);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+.btn-secondary {
+  background: var(--color-emerald);
+  color: var(--color-text-primary);
+}
+
+.btn-secondary:hover {
+  background: #27AE60;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-text-primary);
+  border: 2px solid var(--color-border);
+}
+
+.btn-outline:hover {
+  background: var(--color-hover);
+  border-color: var(--color-gold);
+}
+
+/* Card Styles */
+.card {
+  background: var(--color-card-bg);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--color-border);
+}
+
+.card:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--color-secondary-bg);
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text-primary);
+  font-size: 14px;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-focus);
+  box-shadow: 0 0 0 3px rgba(0, 191, 255, 0.1);
+}
+
+.form-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* Status Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-success {
+  background: var(--color-success);
+  color: var(--color-text-primary);
+}
+
+.badge-warning {
+  background: var(--color-warning);
+  color: var(--color-primary-bg);
+}
+
+.badge-error {
+  background: var(--color-error);
+  color: var(--color-text-primary);
+}
+
+.badge-info {
+  background: var(--color-info);
+  color: var(--color-text-primary);
+}
+
+/* Utility Classes */
+.text-primary { color: var(--color-text-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-muted { color: var(--color-text-muted); }
+.text-gold { color: var(--color-gold); }
+.text-emerald { color: var(--color-emerald); }
+
+.bg-primary { background: var(--color-primary-bg); }
+.bg-secondary { background: var(--color-secondary-bg); }
+.bg-card { background: var(--color-card-bg); }
+
+.border-gold { border-color: var(--color-gold); }
+.border-emerald { border-color: var(--color-emerald); }
+
+/* Loading and Skeleton Styles */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  color: var(--color-text-secondary);
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--color-card-bg) 25%, var(--color-hover) 50%, var(--color-card-bg) 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }

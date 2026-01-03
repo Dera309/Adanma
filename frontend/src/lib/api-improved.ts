@@ -205,9 +205,9 @@ export const testConnection = async (): Promise<{
             password: 'testpassword123'
           });
           results.auth = true;
-        } catch (error) {
+        } catch (error: any) {
           // Auth might fail due to credentials, but if we get a proper response, connection works
-          results.auth = error?.error?.code !== 'NETWORK_ERROR';
+          results.auth = error?.error?.code !== 'NETWORK_ERROR' && error?.code !== 'NETWORK_ERROR';
         }
       }
     }

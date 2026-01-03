@@ -38,7 +38,7 @@ const RoleSelectionPage: React.FC = () => {
         // Update user context with new roles
         const updatedUser = {
           ...user!,
-          roles: selectedRoles.join(',')
+          roles: (selectedRoles as string[]).join(',')
         };
         updateUser(updatedUser);
         

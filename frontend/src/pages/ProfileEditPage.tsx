@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { Input, Button, FormError } from '../components/Form';
 import { useToast } from '../components/Toast';
+import { User } from '../types';
 import axios from 'axios';
 import './ProfileEditPage.css';
 

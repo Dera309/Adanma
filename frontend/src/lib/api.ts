@@ -7,7 +7,7 @@ const generateCorrelationId = (): string => {
 
 // Create axios instance with enhanced configuration
 const api: AxiosInstance = axios.create({
-  baseURL: (import.meta.env.VITE_API_URL || 'http://localhost:5002') + '/api',
+  baseURL: import.meta.env.DEV ? '/api' : (import.meta.env.VITE_API_URL || 'http://localhost:5002') + '/api',
   timeout: 15000, // Increased timeout to 15 seconds
   withCredentials: true, // Important for cookie-based authentication
   headers: {
@@ -165,7 +165,7 @@ export default api;
 export interface ApiResponse<T = any> {
   success: boolean;
   message?: string;
-  data?: T;
+  data?: T & { accessToken?: string };
   error?: {
     code: string;
     message: string;

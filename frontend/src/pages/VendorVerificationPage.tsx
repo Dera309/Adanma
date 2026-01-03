@@ -22,7 +22,7 @@ const VendorVerificationPage = () => {
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
-    const userRoles = typeof user?.roles === 'string' ? user.roles : (Array.isArray(user?.roles) ? user.roles.join(',') : '');
+    const userRoles: string = typeof user?.roles === 'string' ? user.roles : Array.isArray(user?.roles) ? user.roles.join(',') : '';
     const isVendor = userRoles.toLowerCase().includes('vendor');
     
     if (isVendor) {
@@ -59,7 +59,7 @@ const VendorVerificationPage = () => {
     setShowForm(true);
   };
 
-  const userRoles = typeof user?.roles === 'string' ? user.roles : (Array.isArray(user?.roles) ? user.roles.join(',') : '');
+  const userRoles: string = typeof user?.roles === 'string' ? user.roles : Array.isArray(user?.roles) ? user.roles.join(',') : '';
   const isVendor = userRoles.toLowerCase().includes('vendor');
   
   if (!isVendor) {

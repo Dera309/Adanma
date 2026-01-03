@@ -1,4 +1,4 @@
-xx{
+{
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2020,

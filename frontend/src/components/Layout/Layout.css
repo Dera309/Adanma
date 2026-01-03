@@ -5,12 +5,12 @@
 }
 
 .header {
-  background: #121212;
-  color: white;
+  background: var(--color-secondary-bg);
+  color: var(--color-text-primary);
   padding: 1rem 0;
   box-shadow: 0 2px 8px rgba(255, 215, 0, 0.2);
   position: relative;
-  border-bottom: 1px solid #1E1E1E;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .container {
@@ -45,11 +45,16 @@
 
 .logo {
   text-decoration: none;
-  color: #FFD700;
+  color: var(--color-gold);
   z-index: 1001;
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.logo:hover {
+  color: var(--color-amber);
 }
 
 .logo h1 {
@@ -68,6 +73,12 @@
   cursor: pointer;
   padding: 0.5rem;
   z-index: 1001;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.mobile-menu-toggle:hover {
+  background: var(--color-hover);
 }
 
 .hamburger {
@@ -81,7 +92,7 @@
   display: block;
   width: 100%;
   height: 3px;
-  background: white;
+  background: var(--color-text-primary);
   border-radius: 2px;
   transition: all 0.3s ease;
 }
@@ -108,28 +119,31 @@
 }
 
 .nav-link {
-  color: white;
+  color: var(--color-text-primary);
   text-decoration: none;
-  transition: opacity 0.2s;
+  transition: all 0.2s ease;
   white-space: nowrap;
   padding: 0.4rem 0.6rem;
   border-radius: 4px;
   font-size: 0.85rem;
+  border: 1px solid transparent;
 }
 
 .nav-link:hover {
-  opacity: 0.8;
+  background: var(--color-hover);
+  color: var(--color-gold);
+  border-color: var(--color-border);
 }
 
 .nav-link:focus {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--color-focus);
   outline-offset: 2px;
-  opacity: 1;
+  background: var(--color-hover);
 }
 
 .user-greeting {
   font-size: 0.8rem;
-  opacity: 0.9;
+  color: var(--color-text-secondary);
   max-width: 150px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -141,19 +155,26 @@
   cursor: pointer;
   font-size: 1rem;
   padding: 0;
+  color: var(--color-text-primary);
+  transition: color 0.2s ease;
+}
+
+.btn-link:hover {
+  color: var(--color-gold);
 }
 
 .main {
   flex: 1;
   padding: 2rem 0;
+  background: var(--color-primary-bg);
 }
 
 .footer {
-  background: #1E1E1E;
+  background: var(--color-card-bg);
   padding: 1.5rem 0;
-  color: #B0B0B0;
+  color: var(--color-text-secondary);
   margin-top: auto;
-  border-top: 1px solid #2A2A2A;
+  border-top: 1px solid var(--color-border);
 }
 
 .footer-content {
@@ -171,12 +192,14 @@
 }
 
 .footer-links a {
-  color: #FFD700;
+  color: var(--color-gold);
   text-decoration: none;
   font-size: 0.875rem;
+  transition: color 0.2s ease;
 }
 
 .footer-links a:hover {
+  color: var(--color-amber);
   text-decoration: underline;
 }
 
@@ -192,7 +215,7 @@
     right: -100%;
     width: 280px;
     height: 100vh;
-    background: #121212;
+    background: var(--color-secondary-bg);
     flex-direction: column;
     align-items: flex-start;
     padding: 5rem 2rem 2rem;
@@ -201,7 +224,7 @@
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5);
     z-index: 1000;
     overflow-y: auto;
-    border-left: 1px solid #1E1E1E;
+    border-left: 1px solid var(--color-border);
   }
 
   .nav-open {
@@ -211,7 +234,11 @@
   .nav-link {
     width: 100%;
     padding: 0.75rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--color-border);
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-radius: 0;
   }
 
   .user-greeting {

@@ -26,7 +26,7 @@ const Layout = () => {
   };
 
   // Check if user has specific roles (handle both string and array)
-  const userRoles = typeof user?.roles === 'string' ? user.roles : (Array.isArray(user?.roles) ? user.roles.join(',') : '');
+  const userRoles: string = typeof user?.roles === 'string' ? user.roles : Array.isArray(user?.roles) ? user.roles.join(',') : '';
   const isBuyer = userRoles.toLowerCase().includes('buyer');
   const isVendor = userRoles.toLowerCase().includes('vendor');
 
