@@ -200,7 +200,7 @@ export const testConnection = async (): Promise<{
       // Test auth endpoint
       if (results.cors) {
         try {
-          const authResponse = await api.post('/auth/login', {
+          await api.post('/auth/login', {
             identifier: 'test@example.com',
             password: 'testpassword123'
           });

@@ -82,7 +82,7 @@ const EmailRegistrationForm: React.FC<EmailRegistrationFormProps> = ({ agreedToT
     setIsLoading(true);
 
     try {
-      const response = await api.post('/auth/register/email', {
+      await api.post('/auth/register/email', {
         email: formData.email,
         password: formData.password,
         acceptedTerms: true // Required by backend validation

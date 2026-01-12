@@ -1,5 +1,4 @@
 import { useState, useEffect, FormEvent } from 'react';
-import { useAuth } from '../contexts/AuthContext';
 import { Input, Button, FormError } from '../components/Form';
 import { useToast } from '../components/Toast';
 import axios from 'axios';
@@ -27,7 +26,6 @@ const passwordRequirements: PasswordRequirement[] = [
 ];
 
 const SecuritySettingsPage = () => {
-  const { user } = useAuth();
   const { showSuccess } = useToast();
   
   // Password change state

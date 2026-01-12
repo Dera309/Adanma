@@ -1,4 +1,3 @@
-import { Button } from '../Form';
 import { FacebookIcon, WhatsAppIcon } from '../icons/SocialIcons';
 import './AuthForms.css';
 

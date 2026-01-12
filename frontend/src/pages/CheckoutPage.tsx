@@ -54,7 +54,7 @@ const CheckoutPage: React.FC = () => {
         phoneNumber: formData.phoneNumber || '+234000000000'
       };
 
-      const response = await fetch('http://localhost:5002/api/orders', {
+      const response = await fetch('/api/orders', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

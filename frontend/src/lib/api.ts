@@ -7,7 +7,7 @@ const generateCorrelationId = (): string => {
 
 // Create axios instance with enhanced configuration
 const api: AxiosInstance = axios.create({
-  baseURL: import.meta.env.DEV ? '/api' : (import.meta.env.VITE_API_URL || 'http://localhost:5002') + '/api',
+  baseURL: '/api',
   timeout: 15000, // Increased timeout to 15 seconds
   withCredentials: true, // Important for cookie-based authentication
   headers: {
@@ -17,6 +17,14 @@ const api: AxiosInstance = axios.create({
   // Don't throw on 4xx errors, handle them in interceptor
   validateStatus: (status) => status < 500,
 });
+
+console.log('API baseURL set to:', api.defaults.baseURL);
+
+// Ensure baseURL is set
+if (!api.defaults.baseURL) {
+  api.defaults.baseURL = '/api';
+  console.log('API baseURL was undefined, set to:', api.defaults.baseURL);
+}
 
 // Request interceptor
 api.interceptors.request.use(
@@ -111,7 +119,7 @@ api.interceptors.response.use(
       let errorCode = 'NETWORK_ERROR';
       
       if (error.code === 'ECONNREFUSED') {
-        errorMessage = 'Cannot connect to server. Please ensure the backend is running on port 5002.';
+        errorMessage = 'Cannot connect to server. Please ensure the backend is running on port 3333.';
         errorCode = 'CONNECTION_REFUSED';
       } else if (error.code === 'ETIMEDOUT' || error.message.includes('timeout')) {
         errorMessage = 'Request timed out. Please try again.';
@@ -145,9 +153,7 @@ api.interceptors.response.use(
 // Health check function
 export const checkApiHealth = async (): Promise<boolean> => {
   try {
-    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5002';
-    console.log('Health check URL:', apiUrl + '/health');
-    const response = await fetch(apiUrl + '/health', {
+    const response = await fetch('/health', {
       method: 'GET',
       cache: 'no-cache',
       signal: AbortSignal.timeout(5000)

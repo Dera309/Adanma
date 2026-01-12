@@ -117,7 +117,7 @@ const VerificationRequestForm: React.FC<VerificationRequestFormProps> = ({
       const formData = new FormData();
       formData.append('documentType', documentType);
       
-      documents.forEach((doc, index) => {
+      documents.forEach((doc, _index) => {
         formData.append(`documents`, doc.file);
       });
 

@@ -1,7 +1,4 @@
-import { useAuth } from '../contexts/AuthContext';
-
 const VendorProductsPage = () => {
-  const { user } = useAuth();
 
   return (
     <div>

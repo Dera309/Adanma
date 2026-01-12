@@ -40,7 +40,7 @@
   </head>
   <body>
     <!-- Loading Screen -->
-    <div class="app-loading">
+    <div class="app-loading" style="display: none;">
       <div class="app-loading-spinner"></div>
       <div class="app-loading-text">Adanma</div>
       <div class="app-loading-subtext">African E-commerce Platform</div>
@@ -54,10 +54,12 @@
     
     <!-- Remove loading screen when app loads -->
     <script>
-      window.addEventListener('load', function() {
-        setTimeout(function() {
-          document.body.classList.add('app-ready');
-        }, 100);
+      // Hide loading screen immediately when React starts
+      document.addEventListener('DOMContentLoaded', function() {
+        const loadingElement = document.querySelector('.app-loading');
+        if (loadingElement) {
+          loadingElement.style.display = 'none';
+        }
       });
     </script>
     

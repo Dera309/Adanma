@@ -40,7 +40,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     // Add a small delay to avoid React Strict Mode double execution issues
     const timer = setTimeout(() => {
       checkAuth();
-    }, 100);
+    }, 500); // Reduced delay
     
     return () => clearTimeout(timer);
   }, []);
@@ -116,7 +116,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }, []);
 
-  const login = async (identifier: string, password: string) => {
+  const login = useCallback(async (identifier: string, password: string) => {
     setError(null);
     setIsLoading(true);
     
@@ -197,9 +197,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
-  const logout = async () => {
+  const logout = useCallback(async () => {
     setError(null);
     
     try {
@@ -212,7 +212,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       localStorage.removeItem('lastAuthRefresh');
       localStorage.removeItem('token');
     }
-  };
+  }, []);
 
   const refreshUser = useCallback(async () => {
     if (!user) return;
@@ -240,13 +240,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }, [user]);
 
-  const updateUser = (updatedUser: User) => {
+  const updateUser = useCallback((updatedUser: User) => {
     setUser(updatedUser);
-  };
+  }, []);
 
-  const clearError = () => {
+  const clearError = useCallback(() => {
     setError(null);
-  };
+  }, []);
 
   const value: AuthContextType = useMemo(() => ({
     user,

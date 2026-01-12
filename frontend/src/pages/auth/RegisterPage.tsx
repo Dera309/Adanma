@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '../../components/Form';
 import EmailRegistrationForm from '../../components/auth/EmailRegistrationForm';
 import PhoneRegistrationForm from '../../components/auth/PhoneRegistrationForm';
 import SocialAuthButtons from '../../components/auth/SocialAuthButtons';

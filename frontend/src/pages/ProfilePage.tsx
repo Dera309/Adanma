@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import SkeletonLoader from '../components/Loading/SkeletonLoader';
-import { User } from '../types';
-import axios from 'axios';
+import api from '../lib/api';
 import './ProfilePage.css';
 
 interface Address {
@@ -20,7 +19,7 @@ const ProfilePage = () => {
   const [addresses, setAddresses] = useState<Address[]>([]);
   const [isLoadingAddresses, setIsLoadingAddresses] = useState(true);
 
-  const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5002';
+  const API_BASE = '/api';
 
   useEffect(() => {
     if (isAuthenticated && user) {
@@ -46,12 +45,7 @@ const ProfilePage = () => {
         return;
       }
 
-      const response = await axios.get(`${API_BASE}/api/addresses`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await api.get('/addresses');
 
       if (response.data.success && response.data.data?.addresses) {
         setAddresses(response.data.data.addresses);
@@ -284,10 +278,6 @@ const ProfilePage = () => {
           <div className="card-body">
             <Link to="/security" className="settings-link">
               <span>Password & Security</span>
-              <span className="arrow">→</span>
-            </Link>
-            <Link to="/security/sessions" className="settings-link">
-              <span>Active Sessions</span>
               <span className="arrow">→</span>
             </Link>
           </div>

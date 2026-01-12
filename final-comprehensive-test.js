@@ -7,7 +7,7 @@
 
 const axios = require('axios');
 
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = 'http://localhost:5009';
 const API_URL = `${BASE_URL}/api`;
 
 // Test configuration
@@ -223,7 +223,7 @@ async function runAllTests() {
   const serverHealthy = await testHealthCheck();
   
   if (!serverHealthy) {
-    console.log('\n❌ Server is not responding. Please ensure the backend is running on port 5000.');
+    console.log('\n❌ Server is not responding. Please ensure the backend is running on port 5009.');
     return;
   }
   

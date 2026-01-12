@@ -22,10 +22,9 @@ const AdminContentPage: React.FC = () => {
   }, []);
 
   const loadAllContent = async () => {
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5002';
     for (const type of contentTypes) {
       try {
-        const response = await fetch(`${API_URL}/api/content/${type.key}`);
+        const response = await fetch(`/api/content/${type.key}`);
         const data = await response.json();
         if (data.success) {
           setContents(prev => ({ ...prev, [type.key]: data.data }));
@@ -40,8 +39,7 @@ const AdminContentPage: React.FC = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5002';
-      const response = await fetch(`${API_URL}/api/content/${type}`, {
+      const response = await fetch(`/api/content/${type}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

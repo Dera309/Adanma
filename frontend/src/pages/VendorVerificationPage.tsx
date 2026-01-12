@@ -55,10 +55,6 @@ const VendorVerificationPage = () => {
     fetchVerificationStatus(); // Refresh status
   };
 
-  const handleStartVerification = () => {
-    setShowForm(true);
-  };
-
   const userRoles: string = typeof user?.roles === 'string' ? user.roles : Array.isArray(user?.roles) ? user.roles.join(',') : '';
   const isVendor = userRoles.toLowerCase().includes('vendor');
   

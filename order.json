@@ -1,0 +1,1 @@
+{"items":[{"name":"Test Item","quantity":1,"price":10}],"shippingAddress":{"firstName":"John","lastName":"Doe","address":"123 Main St","city":"Lagos","country":"Nigeria"},"paymentMethod":"card","totalAmount":10,"customerEmail":"test@example.com","phoneNumber":"+234123456789"}

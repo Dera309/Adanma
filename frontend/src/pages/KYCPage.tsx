@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useAuth } from '../contexts/AuthContext';
 import { FormError, FormSuccess } from '../components/Form';
 import SkeletonLoader from '../components/Loading/SkeletonLoader';
 import api from '../lib/api';
@@ -19,7 +18,6 @@ interface KYCData {
 }
 
 const KYCPage = () => {
-  const { user } = useAuth();
   const [kycData, setKycData] = useState<KYCData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -41,7 +39,7 @@ const KYCPage = () => {
 
   const fetchKYCStatus = async () => {
     try {
-      const response = await api.get('/api/users/kyc-status');
+      const response = await api.get('/users/kyc-status');
       if (response.data.success) {
         setKycData(response.data.data);
         if (response.data.data && response.data.data.status !== 'not_submitted') {
@@ -116,7 +114,7 @@ const KYCPage = () => {
         }
       });
 
-      const response = await api.post('/api/users/kyc-submit', submitData, {
+      const response = await api.post('/users/kyc-submit', submitData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 

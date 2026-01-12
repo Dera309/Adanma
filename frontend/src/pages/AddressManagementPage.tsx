@@ -11,7 +11,7 @@ import axios from 'axios';
 import './AddressManagementPage.css';
 
 const AddressManagementPage = () => {
-  const { showSuccess, showError } = useToast();
+  const { showSuccess } = useToast();
   const [addresses, setAddresses] = useState<Address[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
