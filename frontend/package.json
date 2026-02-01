@@ -8,6 +8,7 @@
     "build": "tsc && vite build",
     "build:dev": "vite build",
     "build:analyze": "npm run build && npx serve dist",
+    "start": "vite preview",
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

@@ -5,7 +5,7 @@ import './styles/critical.css';
 import './index.css';
 
 // Hide loading screen when React app starts
-const loadingElement = document.querySelector('.app-loading');
+const loadingElement = document.querySelector('.app-loading') as HTMLElement;
 if (loadingElement) {
   loadingElement.style.display = 'none';
 }
