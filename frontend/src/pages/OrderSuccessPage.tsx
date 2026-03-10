@@ -29,7 +29,7 @@ const OrderSuccessPage: React.FC = () => {
 
       try {
         const token = localStorage.getItem('accessToken');
-        const response = await fetch(`http://localhost:5002/api/orders/${orderId}`, {
+        const response = await fetch(`/api/orders/${orderId}`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }

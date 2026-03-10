@@ -119,7 +119,7 @@ api.interceptors.response.use(
       let errorCode = 'NETWORK_ERROR';
       
       if (error.code === 'ECONNREFUSED') {
-        errorMessage = 'Cannot connect to server. Please ensure the backend is running on port 3333.';
+        errorMessage = 'Cannot connect to server. Please ensure the backend is running on port 5000.';
         errorCode = 'CONNECTION_REFUSED';
       } else if (error.code === 'ETIMEDOUT' || error.message.includes('timeout')) {
         errorMessage = 'Request timed out. Please try again.';

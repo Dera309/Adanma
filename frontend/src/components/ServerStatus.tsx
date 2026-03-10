@@ -35,7 +35,7 @@ const ServerStatus: React.FC = () => {
     }}>
       {isServerOnline === false ? (
         <>
-          ⚠️ Backend server is not running. Please start the server on port 5002.
+          ⚠️ Backend server is not running. Please start the server on port 5000.
           <button 
             onClick={checkServer}
             disabled={isChecking}

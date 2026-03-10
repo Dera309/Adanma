@@ -19,7 +19,7 @@ const SearchPage: React.FC = () => {
     const searchProducts = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`http://localhost:5002/api/products/search?q=${encodeURIComponent(query)}`);
+        const response = await fetch(`/api/products/search?q=${encodeURIComponent(query)}`);
         const result = await response.json();
         if (result.success) {
           setProducts(result.data.products);

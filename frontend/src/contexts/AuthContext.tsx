@@ -122,10 +122,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     
     try {
       console.log('🔐 Attempting login for:', identifier);
-      console.log('🔗 API URL:', import.meta.env.VITE_API_URL || 'http://localhost:5002');
+      console.log('🔗 API URL:', import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000');
       
       const response = await api.post<ApiResponse<LoginResponse>>('/auth/login', {
-        identifier,
+        identifier: identifier.trim(),
         password
       });
 

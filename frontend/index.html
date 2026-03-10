@@ -9,70 +9,20 @@
     <title>Adanma</title>
     <meta name="title" content="Adanma" />
     <meta name="description" content="Connect buyers and sellers across Nigeria, Ghana, Kenya, South Africa, Cameroon, and Egypt. Secure authentication, verified vendors, and seamless transactions." />
-    <meta name="keywords" content="Adanma, African e-commerce, online marketplace, buy sell Africa, Nigeria marketplace, Ghana shopping, Kenya online store, South Africa e-commerce" />
-    <meta name="author" content="Adanma Platform" />
-    <meta name="robots" content="index, follow" />
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://adanma.com/" />
-    <meta property="og:title" content="Adanma" />
-    <meta property="og:description" content="African E-commerce Platform" />
-    <meta property="og:image" content="/og-image.png" />
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://adanma.com/" />
-    <meta property="twitter:title" content="Adanma" />
-    <meta property="twitter:description" content="African E-commerce Platform" />
-    <meta property="twitter:image" content="/twitter-image.png" />
     
     <!-- Theme Color -->
     <meta name="theme-color" content="#10B981" />
-    <meta name="msapplication-TileColor" content="#10B981" />
     
-    <!-- Preconnect to external domains for performance -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
-    <!-- Google Fonts - Inter for modern, clean look -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <!-- Loading Screen -->
-    <div class="app-loading" style="display: none;">
-      <div class="app-loading-spinner"></div>
-      <div class="app-loading-text">Adanma</div>
-      <div class="app-loading-subtext">African E-commerce Platform</div>
-    </div>
-    
     <!-- React Root -->
     <div id="root"></div>
     
-    <!-- Main Application Script -->
+    <!-- DEV: Main Application Script -->
     <script type="module" src="/src/main.tsx"></script>
-    
-    <!-- Remove loading screen when app loads -->
-    <script>
-      // Hide loading screen immediately when React starts
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadingElement = document.querySelector('.app-loading');
-        if (loadingElement) {
-          loadingElement.style.display = 'none';
-        }
-      });
-    </script>
-    
-    <!-- No JavaScript fallback -->
-    <noscript>
-      <div style="display: flex; align-items: center; justify-content: center; min-height: 100vh; background: #f3f4f6; padding: 20px; text-align: center;">
-        <div>
-          <h1 style="color: #1f2937; margin-bottom: 16px;">JavaScript Required</h1>
-          <p style="color: #6b7280; font-size: 16px;">
-            Please enable JavaScript in your browser to use Adanma.
-          </p>
-        </div>
-      </div>
-    </noscript>
   </body>
 </html>
